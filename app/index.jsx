@@ -1,63 +1,55 @@
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 
 import { useState } from "react";
 
-import TaskWindowPopUp from "../components/TaskWindowPopUp";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faListCheck } from "@fortawesome/free-solid-svg-icons";
+
+import { Keyboard } from "react-native";
+import { Icon } from "@rneui/themed";
+import { Link } from "expo-router";
 
 export default function HomeScreen() {
-  const [taskWindow, setTaskWindow] = useState(false);
-
-  function openTaskWindow() {
-    setTaskWindow(!taskWindow);
-  }
-
   return (
-    <View style={styles.container}>
-      <View style={styles.tasksList}>
-        <Text>Tasks</Text>
+    <>
+      <View style={styles.main}>
+        <View style={styles.appsContainer}>
+          <View style={styles.todoApp}>
+            <Link href="/todo">
+              <FontAwesomeIcon
+                icon={faListCheck}
+                size={25}
+                color="white"
+              ></FontAwesomeIcon>
+            </Link>
+          </View>
+          <View style={styles.converter}></View>
+          {/* <Link href="/todo">
+            <Text style={styles.text}>Task List</Text>
+          </Link> */}
+        </View>
       </View>
-      <View style={styles.taskInput}>
-        <Pressable style={styles.button} onPress={openTaskWindow}>
-          <Text style={styles.addTaskBtn}>Add new task</Text>
-        </Pressable>
-      </View>
-      {taskWindow && <TaskWindowPopUp openTaskWindow={openTaskWindow} />}
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
-  addTaskBtn: {
-    color: "black",
-    fontWeight: "600",
+  appsContainer: {
+    flex: 1,
+    widht: "80%",
   },
-  button: {
-    width: 120,
-    height: 40,
-    backgroundColor: "white",
-    borderRadius: 150,
-    justifyContent: "center",
-    alignItems: "center",
-    position: "absolute",
-    right: 10,
-    bottom: 30,
-    borderWidth: 2,
-    borderColor: "gray",
-  },
-  container: {
+  main: {
     backgroundColor: "#000000",
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-between",
-    paddingVertical: 30,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  taskInput: {
-    flexDirection: "row",
-    marginHorizontal: 10,
-  },
-  tasksList: {
-    width: 100,
-    height: 100,
-    backgroundColor: "#fff",
+  todoApp: {
+    backgroundColor: "rgba(255,255,255,0.3)",
+    width: 65,
+    height: 65,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
   },
 });
