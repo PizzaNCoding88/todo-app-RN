@@ -4,19 +4,18 @@ export default styles = StyleSheet.create({
   appsContainer: {
     flex: 1,
     widht: "80%",
+    alignItems: "center",
   },
   main: {
     backgroundColor: "#000000",
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    gap: 40,
+    paddingTop: 50,
   },
-  todoApp: {
-    backgroundColor: "rgba(255,255,255,0.3)",
-    width: 65,
-    height: 65,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 10,
+  text: {
+    color: "#E1DBCB",
+    fontWeight: "bold",
+    fontSize: 50,
+    textAlign: "center",
   },
 });
