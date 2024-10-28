@@ -13,9 +13,13 @@ export default function HomeScreen() {
       <View style={styles.main}>
         <Text style={styles.text}>Multitools App</Text>
         <View style={styles.appsContainer}>
-          <Apps name={"To-do List"} icon={faListCheck} />
-          <Apps name={"Unit Converter"} icon={faCalculator} />
-          <Apps name={"Notes"} icon={faNoteSticky} />
+          <Apps name={"To-do List"} icon={faListCheck} path={"/todo"} />
+          <Apps
+            name={"Unit Converter"}
+            icon={faCalculator}
+            path={"/unitConverter"}
+          />
+          <Apps name={"Notes"} icon={faNoteSticky} path={"/notes"} />
           <View style={styles.converter}></View>
         </View>
       </View>

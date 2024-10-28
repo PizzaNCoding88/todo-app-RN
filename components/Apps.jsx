@@ -7,19 +7,19 @@ import { Link } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const Apps = (props) => {
-  const { name, icon } = props;
+  const { name, icon, path } = props;
   return (
     <>
-      <View>
-        <View style={styles.todoApp}>
-          <Link href="/todo">
+      <View style={styles.appTab}>
+        <Link href={`${path}`}>
+          <View style={styles.todoApp}>
             <FontAwesomeIcon
               icon={icon}
               size={25}
               color="white"
             ></FontAwesomeIcon>
-          </Link>
-        </View>
+          </View>
+        </Link>
         <Text style={styles.text}>{name}</Text>
       </View>
     </>
