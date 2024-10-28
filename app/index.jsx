@@ -20,7 +20,6 @@ export default function HomeScreen() {
             path={"/unitConverter"}
           />
           <Apps name={"Notes"} icon={faNoteSticky} path={"/notes"} />
-          <View style={styles.converter}></View>
         </View>
       </View>
     </>

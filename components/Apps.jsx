@@ -10,13 +10,13 @@ const Apps = (props) => {
   const { name, icon, path } = props;
   return (
     <>
-      <View style={styles.appTab}>
-        <Link href={`${path}`}>
-          <View style={styles.todoApp}>
+      <View style={styles.appButton}>
+        <Link href={`${path}`} style={styles.app}>
+          <View style={styles.appBtn}>
             <FontAwesomeIcon
               icon={icon}
               size={25}
-              color="white"
+              color="black"
             ></FontAwesomeIcon>
           </View>
         </Link>
