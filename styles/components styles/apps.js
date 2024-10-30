@@ -1,9 +1,10 @@
 import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
-  appButton: {
+  appButtonAndText: {
     flexDirection: "column",
     alignItems: "center",
+    gap: 10,
   },
   appBtn: {
     backgroundColor: "rgba(255,255,255,0.3)",

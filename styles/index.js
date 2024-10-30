@@ -13,6 +13,7 @@ export default styles = StyleSheet.create({
     gap: 80,
     paddingTop: 50,
   },
+  navigation: {},
   text: {
     color: "#E1DBCB",
     fontWeight: "bold",

@@ -3,15 +3,15 @@ import { StyleSheet } from "react-native";
 export default styles = StyleSheet.create({
   header: {
     flexDirection: "row",
-    // justifyContent: "space-between",
-    gap: 20,
+    justifyContent: "center",
     alignItems: "center",
-    paddingLeft: 15,
-    paddingTop: 10,
+    gap: 20,
   },
   main: {
-    backgroundColor: "#000000",
+    backgroundColor: "#293742",
     flex: 1,
+    paddingTop: 50,
+    alignItems: "center",
   },
   text: {
     color: "white",

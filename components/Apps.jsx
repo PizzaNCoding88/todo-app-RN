@@ -10,7 +10,7 @@ const Apps = (props) => {
   const { name, icon, path } = props;
   return (
     <>
-      <View style={styles.appButton}>
+      <View style={styles.appButtonAndText}>
         <Link href={`${path}`} style={styles.app}>
           <View style={styles.appBtn}>
             <FontAwesomeIcon

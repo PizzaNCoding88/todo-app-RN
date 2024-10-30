@@ -4,7 +4,7 @@ import styles from "../styles/todo";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
 import Task from "../components/Task";
 import { Keyboard } from "react-native";
@@ -15,6 +15,7 @@ import { Link } from "expo-router";
 export default function HomeScreen() {
   const [task, setTask] = useState();
   const [taskList, setTaskList] = useState([]);
+  const [deletedList, setDeletedList] = useState([]);
 
   function addTask() {
     Keyboard.dismiss();
@@ -22,38 +23,58 @@ export default function HomeScreen() {
     setTask(null);
   }
 
-  // function createAlert(index) {
-  //   Alert.alert("Are you sure you want to delete the current task?", "", [
-  //     { text: "No", onPress: () => {} },
-  //     {
-  //       text: "Yes",
-  //       onPress: () => completeTask(index),
-  //     },
-  //   ]);
-  // }
+  function createAlert(index) {
+    Alert.alert("Are you sure you want to delete the current task?", "", [
+      { text: "No", onPress: () => {} },
+      {
+        text: "Yes",
+        onPress: () => deleteTask(index),
+      },
+    ]);
+  }
 
   function completeTask(i) {
     let taskListCopy = [...taskList];
-    taskListCopy.splice(i, 1);
+    let deletedTaskListCopy = [...deletedList];
+    let deletedTask = taskListCopy.splice(i, 1);
+    deletedTaskListCopy.push(deletedTask);
+    setDeletedList(deletedTaskListCopy);
     setTaskList(taskListCopy);
+  }
+
+  function deleteTask(i) {
+    let deletedListCopy = [...deletedList];
+    deletedListCopy.splice(i, 1);
+    setDeletedList(deletedListCopy);
   }
 
   return (
     <>
       <View style={styles.mainContainer}>
         <View style={styles.header}>
-          <Text style={styles.title}>Your Active Tasks</Text>
           <Link href="/deletedTasks">
-            <FontAwesomeIcon icon={faTrashCan} style={styles.icon} size={25} />
+            <FontAwesomeIcon icon={faList} style={styles.icon} size={25} />
           </Link>
+          <Text style={styles.title}>Your Active Tasks</Text>
         </View>
         <View style={styles.container}>
           <View style={styles.tasksContainer}>
-            {taskList.map((task, i) => (
-              <TouchableOpacity key={i} onPress={() => completeTask(i)}>
-                <Task style={styles.text} task={task} />
-              </TouchableOpacity>
-            ))}
+            <View style={styles.tasksList}>
+              {taskList.map((task, i) => (
+                <TouchableOpacity key={i} onPress={() => completeTask(i)}>
+                  <Task style={styles.text} task={task} />
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            <View style={styles.tasksList}>
+              <Text style={styles.title}>Deleted Tasks</Text>
+              {deletedList.map((deleted, i) => (
+                <TouchableOpacity key={i} onPress={() => createAlert(i)}>
+                  <Task style={styles.text} task={deleted} />
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
 
           <View style={styles.taskInput}>

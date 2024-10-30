@@ -6,7 +6,7 @@ export default styles = StyleSheet.create({
     fontWeight: "600",
   },
   button: {
-    width: 30,
+    width: 40,
     height: 40,
     backgroundColor: "white",
     borderRadius: 150,
@@ -16,16 +16,16 @@ export default styles = StyleSheet.create({
     borderColor: "gray",
   },
   container: {
-    backgroundColor: "#000000",
+    backgroundColor: "#293742",
     flex: 1,
     justifyContent: "space-between",
-    paddingTop: 20,
     paddingBottom: 10,
   },
   header: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
+    gap: 20,
   },
   icon: {
     color: "white",
@@ -39,12 +39,15 @@ export default styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    backgroundColor: "black",
-    paddingTop: 20,
+    backgroundColor: "#293742",
+    paddingTop: 50,
     paddingHorizontal: 10,
   },
   tasksContainer: {
-    gap: 10,
+    flex: 1,
+    justifyContent: "space-between",
+    paddingVertical: 30,
+    flexDirection: "column",
   },
   taskInput: {
     flexDirection: "row",
@@ -53,9 +56,11 @@ export default styles = StyleSheet.create({
     marginHorizontal: 10,
     gap: 20,
   },
+  tasksList: { gap: 8 },
   title: {
     color: "white",
     fontSize: 30,
     fontWeight: "800",
+    textAlign: "center",
   },
 });
