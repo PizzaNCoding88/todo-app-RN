@@ -8,5 +8,6 @@ export default styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20,
     fontSize: 15,
+    textDecorationLine: "line-through",
   },
 });

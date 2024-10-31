@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 
 import Task from "../components/Task";
+import DeletedTask from "../components/DeletedTask";
+
 import { Keyboard } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { Icon } from "@rneui/themed";
 import { Link } from "expo-router";
 
 export default function HomeScreen() {
@@ -24,10 +25,15 @@ export default function HomeScreen() {
   }
 
   function createAlert(index) {
-    Alert.alert("Are you sure you want to delete the current task?", "", [
-      { text: "No", onPress: () => {} },
+    Alert.alert("Would you like to restore or delete the task forever?", "", [
       {
-        text: "Yes",
+        text: "Restore",
+        onPress: () => {
+          restoreTask(index);
+        },
+      },
+      {
+        text: "Delete",
         onPress: () => deleteTask(index),
       },
     ]);
@@ -48,6 +54,13 @@ export default function HomeScreen() {
     setDeletedList(deletedListCopy);
   }
 
+  function restoreTask(i) {
+    let taskToRestore = deletedList.splice(i, 1);
+    let taskListCopy = [...taskList];
+    taskListCopy.push(taskToRestore);
+    setTaskList(taskListCopy);
+  }
+
   return (
     <>
       <View style={styles.mainContainer}>
@@ -62,19 +75,21 @@ export default function HomeScreen() {
             <View style={styles.tasksList}>
               {taskList.map((task, i) => (
                 <TouchableOpacity key={i} onPress={() => completeTask(i)}>
-                  <Task style={styles.text} task={task} />
+                  <Task task={task} />
                 </TouchableOpacity>
               ))}
             </View>
 
-            <View style={styles.tasksList}>
-              <Text style={styles.title}>Deleted Tasks</Text>
-              {deletedList.map((deleted, i) => (
-                <TouchableOpacity key={i} onPress={() => createAlert(i)}>
-                  <Task style={styles.text} task={deleted} />
-                </TouchableOpacity>
-              ))}
-            </View>
+            {deletedList.length > 0 && (
+              <View style={styles.tasksList}>
+                <Text style={styles.title}>Deleted Tasks</Text>
+                {deletedList.map((deleted, i) => (
+                  <TouchableOpacity key={i} onPress={() => createAlert(i)}>
+                    <DeletedTask task={deleted} />
+                  </TouchableOpacity>
+                ))}
+              </View>
+            )}
           </View>
 
           <View style={styles.taskInput}>
